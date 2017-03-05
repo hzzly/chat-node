@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>聊天室</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<div class="chat" id="chatApp" v-cloak>
+    <ul class="room-list">
+    	<li v-for="item in msgList">
+    		<div>
+    			<i class="iconfont icon-username" :class="[item.username == user ? 'iconmyself' : '']"></i>
+    			<div class="room-list-content" :class="[item.username == user ? 'conmyself' : '']">
+    				<div class="room-list-msg">
+    					<span class="msg-name">{{item.username | checkUser}}</span>
+    					<span class="msg-time">{{item.time | formatDate}}</span>
+    				</div>
+    				<div class="msg-detail">{{item.msg}}</div>
+    			</div>
+    		</div>
+    	</li>
+    </ul>
+    <div class="send-box">
+    	<input type="text" placeholder="写点什么喃..." v-model="sendMsg">
+    	<button type="button" @click="doSendMsg">发送</button>
+    </div>
+
+    <div class="login-box" v-if="!loginState">
+        <div class="wrap">
+            <p>取一个名字吧</p>
+            <input type="text" v-model="username">
+            <div @click="confirm">确定</div>
+        </div>
+        <div class="mask"></div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+<script src="/javascripts/index.js"></script>
+</body>
+</html>
