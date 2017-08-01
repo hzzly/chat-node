@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<title>聊天室</title>
+	<link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+<div class="chat" id="chatApp" v-cloak>
+    <ul class="room-list" ref="chatBodyEle">
+    	<li v-for="item in msgList">
+    		<div>
+    			<!-- <i class="iconfont icon-username" :class="[item.username == user ? 'iconmyself' : '']"></i> -->
+    			<div class="room-list-content" class="conmyself">
+    				<div class="room-list-msg">
+    					<span class="msg-time">{{item.date | formatDate}}</span>
+    				</div>
+    				<div class="msg-detail">{{item.payload.content}}</div>
+    			</div>
+    		</div>
+    	</li>
+    </ul>
+    <div class="send-box">
+    	<input type="text" placeholder="写点什么喃..." v-model="sendMsg">
+			<button type="button" @click="send100">100</button>
+			<button type="button" @click="send103">103</button>
+			<button type="button" @click="send651">651</button>
+			<button type="button" @click="send653">653</button>
+			<button type="button" @click="send604">604</button>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.1.3/vue.js"></script>
+<script src="/javascripts/index2.js"></script>
+</body>
+</html>

@@ -35,14 +35,14 @@ io.on('connection', (socket) => {
   // socket.on('login', (obj) => {
   //   console.log(obj);
   // })
-  console.log('a user connected');
+  // console.log('a user connected');
 
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });
 
-  socket.on('post', function(say) {
-    io.emit('post', say)
+  socket.on('chatevent', function(data) {
+    io.emit('chatevent', data)
   });
 });
 
